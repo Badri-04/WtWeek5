@@ -52,10 +52,13 @@
 		}
 	</style>
 	<script type="text/javascript">
+		var i=0,player1=0,player2=0;
 		function generate() {
 			return Math.floor(Math.random()*6+1)
 		}
-		function play1(sc){
+		function play1(){
+			var sc=player1; 
+			var p=0;
 			var n=generate(),m=generate();
 			document.getElementById("pr1").innerHTML=n+" "+m;
 			document.getElementById("d1").innerHTML=n;
@@ -64,25 +67,34 @@
 				if(n==1 || n==2 || n==4 || n==5){
 					document.getElementById("ps1").innerHTML=5;
 					document.getElementById("pt1").innerHTML=sc+5;
-					return sc+5;
+					sc=sc+5;
+					p=5;
 				}
 				else if(n==6){
 					document.getElementById("ps1").innerHTML=25;
 					document.getElementById("pt1").innerHTML=sc+25;
-					return sc+25;
+					sc=sc+25;
+					p=25;
 				}
 				else{
 					document.getElementById("ps1").innerHTML="-"+sc;
 					document.getElementById("pt1").innerHTML=0;
-					return 0;
+					sc=0;
+					p="-"+sc;
 				}
 			}
-			document.getElementById("ps1").innerHTML=0;
+			document.getElementById("ps1").innerHTML=p;
 			document.getElementById("pt1").innerHTML=sc;
-			return sc;
+			player1=sc;
+			if(player1>=50){
+				document.getElementById("turn").innerHTML="Player 1 Won";
+				return;
+			}
+			document.getElementById("turn").innerHTML="Player 2's Turn";
 		}
 		function play2(sc){
 			var n=generate(),m=generate();
+			var sc=player2,p=0;
 			document.getElementById("pr2").innerHTML=n+" "+m;
 			document.getElementById("d1").innerHTML=n;
 			document.getElementById("d2").innerHTML=m;
@@ -90,52 +102,38 @@
 				if(n==1 || n==2 || n==4 || n==5){
 					document.getElementById("ps2").innerHTML=5;
 					document.getElementById("pt2").innerHTML=sc+5;
-					return sc+5;
+					sc=sc+5;
+					p=5;
 				}
 				else if(n==6){
 					document.getElementById("ps2").innerHTML=25;
 					document.getElementById("pt2").innerHTML=sc+25;
-					return sc+25;
+					sc=sc+25;
+					p=25;
 				}
 				else{
 					document.getElementById("ps2").innerHTML="-"+sc;
 					document.getElementById("pt2").innerHTML=0;
-					return 0;
+					sc=0;
+					p="-"+sc;
 				}
 			}
-			document.getElementById("ps2").innerHTML=0;
+			document.getElementById("ps2").innerHTML=p;
 			document.getElementById("pt2").innerHTML=sc;
-			return sc;
+			player2=sc;
+			if(player2>=50){
+				document.getElementById("turn").innerHTML="Player 2 Won";
+				return;
+			}
+					
+			document.getElementById("turn").innerHTML="Player 1's Turn";
 		}
 		function start(){
 			document.getElementById("turn").innerHTML="Player 1's Turn";
+			player1=0;
+			player2=0;
 		}
-		var i=0,player1=0,player2=0;
-
-		function playing(){
-			console.log(player1)
-			console.log(player2)
-			if(player1<50 && player2<50){
-				if(i%2==0){
-					player1=play1(player1);
-					if(player1>=50){
-						document.getElementById("turn").innerHTML="Player 1 Won";
-						return;
-					}
-					i+=1
-					document.getElementById("turn").innerHTML="Player 2's Turn";
-				}
-				else{
-					player2=play2(player2);
-					if(player2>=50){
-						document.getElementById("turn").innerHTML="Player 2 Won";
-						return;
-					}
-					i+=1
-					document.getElementById("turn").innerHTML="Player 1's Turn";
-				}
-			}
-		}
+		
 	</script>
 </head>
 <body>
@@ -162,8 +160,8 @@
 		</div>
 		<table>
 			<tr>
-				<td><button onclick="playing()">Throw dice Player 1</button></td>
-				<td><button onclick="playing()">Throw dice Player 2</button></td>
+				<td><button onclick="play1()">Throw dice Player 1</button></td>
+				<td><button onclick="play2()">Throw dice Player 2</button></td>
 			</tr>
 			<tr>
 				<td>Player 1 rolled : <span id="pr1"></span></td>
