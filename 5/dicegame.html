@@ -57,6 +57,9 @@
 			return Math.floor(Math.random()*6+1)
 		}
 		function play1(){
+			if(player1>=50 || player2>=50){
+				return;
+			}
 			var sc=player1; 
 			var p=0;
 			var n=generate(),m=generate();
@@ -87,12 +90,15 @@
 			document.getElementById("pt1").innerHTML=sc;
 			player1=sc;
 			if(player1>=50){
-				document.getElementById("turn").innerHTML="Player 1 Won";
+				document.getElementById("turn").innerHTML="Player 1 Won!! Restart to play again";
 				return;
 			}
 			document.getElementById("turn").innerHTML="Player 2's Turn";
 		}
 		function play2(sc){
+			if(player1>=50 || player2>=50){
+				return;
+			}
 			var n=generate(),m=generate();
 			var sc=player2,p=0;
 			document.getElementById("pr2").innerHTML=n+" "+m;
@@ -122,7 +128,7 @@
 			document.getElementById("pt2").innerHTML=sc;
 			player2=sc;
 			if(player2>=50){
-				document.getElementById("turn").innerHTML="Player 2 Won";
+				document.getElementById("turn").innerHTML="Player 2 Won!! Restart to play again";
 				return;
 			}
 					
