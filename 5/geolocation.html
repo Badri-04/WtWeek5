@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Geo Location</title>
+	<style type="text/css">
+		#top{
+			background-color: #7FFFD4;
+			width: 100%;
+			padding: 15px;
+		}
+		#top>a{
+			background-color: #7FFFD4;
+			text-decoration: none;
+			padding: 6px 50px;
+			margin-right: 7%;
+			margin-left: 7%;
+			color: blue;
+		}
+		#top>a:hover{
+			background-color: #7FFFF4;
+			color: green;
+		}
+		button{
+			margin-top: 20px;
+		}
+	</style>
+	<script type="text/javascript">
+		function pop() {
+			document.getElementById("la").innerHTML="";
+			document.getElementById("lo").innerHTML="";
+			if(confirm("File wants to know your Location")){
+				if (!navigator.geolocation) {
+        			document.getElementById("la").innerHTML = "Your browser doesn't support Geolocation";
+    			}
+    			else{
+    				navigator.geolocation.getCurrentPosition(display);
+    			}
+			}
+			else{
+				alert("Permission Denied!!")
+			}
+		}
+		function display(position){
+			document.getElementById("la").innerHTML="Latitude: " + position.coords.latitude;
+			document.getElementById("lo").innerHTML="Longitude: " + position.coords.longitude;
+		}
+	</script>
+</head>
+<body>
+	<div id='top'>
+		<a href="JS_Form.html">JS Form</a>
+		<a href="table.html">Table</a>
+		<a href="dicegame.html">Dice Game</a>
+		<a href="geolocation.html">Geo Location</a>
+	</div>
+
+	<button onclick="pop()">Show Location</button>
+	<p id="la"></p>
+	<p id="lo"></p>
+</body>
+</html>

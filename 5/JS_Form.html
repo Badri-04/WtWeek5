@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>JS Form</title>
+	<style>
+		h1{
+			color: blue;
+			text-align: center;
+			border: solid 1px blue;
+		}
+		#bottom{
+			width: 40%;
+			background-color: cyan;
+			padding: 30px;
+			margin-left: 30%;
+			margin-right: 30%;
+		}
+		table{
+			width: 100%;
+		}
+		td{
+			height: 40px;
+		}
+		span{
+			color: red;
+		}
+		#top{
+			background-color: #7FFFD4;
+			width: 100%;
+			padding: 15px;
+		}
+		#top>a{
+			background-color: #7FFFD4;
+			text-decoration: none;
+			padding: 6px 50px;
+			margin-right: 7%;
+			margin-left: 7%;
+			color: blue;
+		}
+		#top>a:hover{
+			background-color: #7FFFF4;
+			color: green;
+		}
+	</style>
+	<script>
+		function test() {
+
+			document.getElementById("nid").innerHTML="";
+			document.getElementById("eid").innerHTML="";
+			document.getElementById("pwid").innerHTML="";
+			document.getElementById("phid").innerHTML="";
+			
+			var user=document.getElementById("name").value;
+			var mail=document.getElementById("mail").value;
+			var pword=document.getElementById("pw").value;
+			var phno=document.getElementById("ph").value;
+			
+			var f=mail.indexOf("@"),l=mail.lastIndexOf(".");
+			var flag=1;
+			
+			var ul = user.length, pl = pword.length, phl=phno.length;
+
+			if(ul<6){
+				document.getElementById("nid").innerHTML="!!Name should cantain atleast 6 letters";
+				flag=0;
+			}
+			if(pl<6){
+				document.getElementById("pwid").innerHTML="!!Password should cantain atleast 6 letters";
+				flag=0;
+			}
+			if(phl!=10){
+				document.getElementById("phid").innerHTML="!!Phone Number should cantain 10 digits";
+				flag=0;
+			}
+			if(f==-1 || l==-1 || f>l){
+				document.getElementById("eid").innerHTML="!!Standard mail pattern(name@domain.com)";
+				flag=0;
+			}
+			
+			
+			if(flag==0){
+				return false;
+			}
+			if(flag==1){
+				return true;
+			}
+		}
+	</script>
+</head>
+<body>
+	<div id='top'>
+		<a href="JS_Form.html">JS Form</a>
+		<a href="table.html">Table</a>
+		<a href="dicegame.html">Dice Game</a>
+		<a href="geolocation.html">Geo Location</a>
+	</div>
+	<div id="bottom">
+		<form onsubmit="return test()">
+		<table>
+			<tr>
+				<td colspan="2"><h1>Registration Form</h1></td>
+			</tr>
+			<tr>
+				<td><b>Name</b></td>
+				<td><input type="text" name="name" id="name" required>
+					<span id="nid"></span>	
+				</td>
+			</tr>
+			<tr>
+				<td><b>E-Mail ID</b></td>
+				<td><input type="email" name="mail" id="mail" required>
+					<span id="eid"></span></td>
+			</tr>
+			<tr>
+				<td><b>Password</b></td>
+				<td><input type="password" name="pw" id="pw">
+					<span id="pwid"></span></td>
+			</tr>
+			<tr>
+				<td><b>Phone Number</b></td>
+				<td><input type="number" name="ph" id="ph">
+					<span id="phid"></span></td>
+			</tr>
+			<tr>
+				<td><b>Gender</b></td>
+				<td><input type="radio" name="male">
+					<label><b>Male</b></label>
+					<input type="radio" name="female">
+					<label><b>Female</b></label>
+				</td>
+			</tr>
+			<tr>
+				<td><b>Date Of Birth</b></td>
+				<td><input type="date" name="dob"></td>
+			</tr>
+			<tr>
+				<td><b>Langusges Known</b></td>
+				<td>
+					<input type="checkbox" name="eng">
+					<label>English</label>
+					<input type="checkbox" name="tel">
+					<label>Telugu</label>
+					<input type="checkbox" name="hin">
+					<label>Hindi</label>
+					<input type="checkbox" name="tam">
+					<label>Tamil</label>
+				</td>
+			</tr>
+			<tr>
+				<td><b>Address</b></td>
+				<td><textarea rows="4" cols="50"></textarea></td>
+			</tr>
+			<tr>
+  				<td><label><b>District</b></label></td>
+				<td><select>  
+					<option value="Kri">Krishna</option>
+					<option value="Gun">Guntur</option>
+					<option value="Vsp">Vizag</option>
+					<option value="EGod">EastGodavari</option>
+					<option value="WGod">WestGodavari</option>
+					<option value="Kad">Kadapa</option>
+					<option value="Kur">Kurnool</option>
+				</select></td>  
+			</tr>
+			<tr>
+				<td><label><b>State</b></label></td>   
+				<td><select>  
+					<option value="AP">AndhraPradesh</option>
+					<option value="MP">MadhyaPradesh</option>
+					<option value="UP">UttarPradesh</option>
+					<option value="Tel">Telangana</option>
+					<option value="Kar">Karnataka</option>
+					<option value="TN">TamilNadu</option>
+					<option value="Ass">Assam</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td><b>Pincode</b></td>
+				<td><input type="number" name="pin"></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<input type="submit" value="Submit">
+					<input type="reset" value="Reset">
+				</td>
+			</tr>
+		</table>
+	</form>
+	</div>
+</body>
+</html>

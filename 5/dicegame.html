@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>DiceGame</title>
+	<style type="text/css">
+		
+		#main{
+			border: 1px solid black;
+			width: 50%;
+			padding: 20px;
+			margin-left: 25%;
+			margin-top: 50px;
+		}
+		table{
+			margin-left:30% ;
+			width: 40%;
+		}
+		h3,img{
+			margin-left: 40%;
+      		
+		}
+		td,tr{
+			padding-top: 20px;
+		}
+		#sub{
+			text-align: center;
+		}
+		#d1,#d2{
+			border: 4px solid black;
+			width: 50px;
+			height: 50px;
+			display: inline-block;
+			vertical-align: middle;
+		}
+		#top{
+			background-color: #7FFFD4;
+			width: 100%;
+			padding: 15px;
+		}
+		#top>a{
+			background-color: #7FFFD4;
+			text-decoration: none;
+			padding: 6px 50px;
+			margin-right: 7%;
+			margin-left: 7%;
+			color: blue;
+		}
+		#top>a:hover{
+			background-color: #7FFFF4;
+			color: green;
+		}
+	</style>
+	<script type="text/javascript">
+		function generate() {
+			return Math.floor(Math.random()*6+1)
+		}
+		function play1(sc){
+			var n=generate(),m=generate();
+			document.getElementById("pr1").innerHTML=n+" "+m;
+			document.getElementById("d1").innerHTML=n;
+			document.getElementById("d2").innerHTML=m;
+			if(n==m){
+				if(n==1 || n==2 || n==4 || n==5){
+					document.getElementById("ps1").innerHTML=5;
+					document.getElementById("pt1").innerHTML=sc+5;
+					return sc+5;
+				}
+				else if(n==6){
+					document.getElementById("ps1").innerHTML=25;
+					document.getElementById("pt1").innerHTML=sc+25;
+					return sc+25;
+				}
+				else{
+					document.getElementById("ps1").innerHTML="-"+sc;
+					document.getElementById("pt1").innerHTML=0;
+					return 0;
+				}
+			}
+			document.getElementById("ps1").innerHTML=0;
+			document.getElementById("pt1").innerHTML=sc;
+			return sc;
+		}
+		function play2(sc){
+			var n=generate(),m=generate();
+			document.getElementById("pr2").innerHTML=n+" "+m;
+			document.getElementById("d1").innerHTML=n;
+			document.getElementById("d2").innerHTML=m;
+			if(n==m){
+				if(n==1 || n==2 || n==4 || n==5){
+					document.getElementById("ps2").innerHTML=5;
+					document.getElementById("pt2").innerHTML=sc+5;
+					return sc+5;
+				}
+				else if(n==6){
+					document.getElementById("ps2").innerHTML=25;
+					document.getElementById("pt2").innerHTML=sc+25;
+					return sc+25;
+				}
+				else{
+					document.getElementById("ps2").innerHTML="-"+sc;
+					document.getElementById("pt2").innerHTML=0;
+					return 0;
+				}
+			}
+			document.getElementById("ps2").innerHTML=0;
+			document.getElementById("pt2").innerHTML=sc;
+			return sc;
+		}
+		function start(){
+			document.getElementById("turn").innerHTML="Player 1's Turn";
+		}
+		var i=0,player1=0,player2=0;
+
+		function playing(){
+			console.log(player1)
+			console.log(player2)
+			if(player1<50 && player2<50){
+				if(i%2==0){
+					player1=play1(player1);
+					if(player1>=50){
+						document.getElementById("turn").innerHTML="Player 1 Won";
+						return;
+					}
+					i+=1
+					document.getElementById("turn").innerHTML="Player 2's Turn";
+				}
+				else{
+					player2=play2(player2);
+					if(player2>=50){
+						document.getElementById("turn").innerHTML="Player 2 Won";
+						return;
+					}
+					i+=1
+					document.getElementById("turn").innerHTML="Player 1's Turn";
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<div id='top'>
+		<a href="JS_Form.html">JS Form</a>
+		<a href="table.html">Table</a>
+		<a href="dicegame.html">Dice Game</a>
+		<a href="geolocation.html">Geo Location</a>
+	</div>
+	<div id="main">
+		<h1><b>WELCOME TO THE TWO DICE GAME</b></h1>
+		<h2>Rules : </h2>
+		<ol>
+			<li>Each player throws both dice once per turn. You only score if you throw doubles.</li>
+			<li>Players score five points fro double ones, twos, fours and fives. A double six scores twenty five points,but if you throw a double three your score goes back to zero.</li>
+			<li>Add your score as you play. The first player to get fifty points wins the game.</li>
+		</ol>
+		<button onclick="start()"><b>START</b></button>
+		<h3 id="turn"></h3>
+		<img src="https://previews.123rf.com/images/_maximp_/_maximp_0907/_maximp_090700002/5149368-two-dice-on-white-vector.jpg" width="15%">
+		<div id="sub">
+			<b><div id="d1"></div></b>
+			<b><div id="d2"></div></b>
+		</div>
+		<table>
+			<tr>
+				<td><button onclick="playing()">Throw dice Player 1</button></td>
+				<td><button onclick="playing()">Throw dice Player 2</button></td>
+			</tr>
+			<tr>
+				<td>Player 1 rolled : <span id="pr1"></span></td>
+				<td>Player 2 rolled : <span id="pr2"></span></td>
+			</tr>
+			<tr>
+				<td>Player 1 score : <span id="ps1"></span></td>
+				<td>Player 2 score : <span id="ps2"></span></td>
+			</tr>
+			<tr>
+				<td colspan="2"><b>Player 1 Total score : <span id="pt1"></span></b></td>
+			</tr>
+			<tr>
+				<td colspan="2"><b>Player 2 Total score : <span id="pt2"></span></b></td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

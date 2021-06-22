@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Table</title>
+	<script type="text/javascript">
+		document.writeln("<div id='top'><a href='JS_Form.html'>JS Form</a><a href='table.html'>Table</a><a href='dicegame.html'>Dice Game</a><a href='geolocation.html'>Geo Location</a></div>")
+		document.writeln("<table>");
+		document.writeln("<tr><td colspan="+3+"><b>NUMBERS FROM 0 TO 10 WITH THEIR SQUARES AND CUBES</b></td></tr>");
+		document.writeln("<tr><td>Number</td><td>Square</td><td>Cube</td></tr>");
+		for(var i=0;i<=10;i++){
+			var s=i*i,c=s*i;
+			document.writeln("<tr><td>"+i+"</td><td>"+s+"</td><td>"+c+"</td></tr>");
+		}
+		document.writeln("</table>");
+	</script>
+	<style type="text/css">
+		table,td,tr{
+			border: 3px solid black;
+			border-collapse : collapse;
+		}
+		td,tr{
+			text-align: center;
+			height: 15px;
+		}
+		table{
+			background-color: lightcyan;
+			width: 40%;
+			margin-left: 30%;
+			margin-top: 50px;
+		}
+		#top{
+			background-color: #7FFFD4;
+			width: 100%;
+			padding: 15px;
+		}
+		#top>a{
+			background-color: #7FFFD4;
+			text-decoration: none;
+			padding: 6px 50px;
+			margin-right: 7%;
+			margin-left: 7%;
+			color: blue;
+		}
+		#top>a:hover{
+			background-color: #7FFFF4;
+			color: green;
+		}
+	</style>
+</head>
+<body>
+
+</body>
+</html>
